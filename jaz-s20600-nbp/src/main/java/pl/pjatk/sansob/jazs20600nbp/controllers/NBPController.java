@@ -44,14 +44,17 @@ public class NBPController {
                     required = true)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE)
             @PathVariable String to
-    ) throws ParseException {
-        DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
-        var fromDate = df.parse(from);
-        var toDate = df.parse(to);
+    ) {
+
         try {
+            DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+            var fromDate = df.parse(from);
+            var toDate = df.parse(to);
             return ResponseEntity.ok(fascade.getAverageGoldPriceAndAddToDb(fromDate, toDate));
+        } catch (ParseException ex) {
+            return MyDumbHttpErrorHandlerBecauseImLazyAndIWasNotInLectures.HandleParseException(ex);
         } catch (Exception ex) { // too bad
-            return MyDumbHttpErrorHandlerBecauseImLazyAndIWasNotInLectures.HandleNBPErrors(ex);
+            return MyDumbHttpErrorHandlerBecauseImLazyAndIWasNotInLectures.HandleNBPExceptions(ex);
         }
     }
 
