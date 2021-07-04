@@ -9,6 +9,7 @@ import pl.pjatk.sansob.jazs20600nbp.exceptions.NBPNoDataException;
 
 import java.text.ParseException;
 
+/** pls dont kill me */
 public class MyDumbHttpErrorHandlerBecauseImLazyAndIWasNotInLectures {
 
     public static ResponseEntity HandleNBPExceptions(Exception e) {
